@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../assets/styles";
+import styles from "../assets/style";
 
 import { Text, View } from "react-native";
-import Icon from "./Icon";
+import { Ionicons } from '@expo/vector-icons';
 
 const UserItem = ({
     name,
@@ -14,30 +14,30 @@ const UserItem = ({
     return (
         <View style={styles.containerUserItem}>
             <Text style={styles.name}>
-                {name}
+                Taro Yamada
             </Text>
             <View style={styles.bio}>
-                <Text>
-                    {bio}
+                <Text style={styles.bio}>
+                    I am focusing on Scull-rowing
                 </Text>
             </View>
             <View style={styles.info}>
                 <Text style={styles.iconProfile}>
-                    <Icon name="club" />
+                    <Ionicons name="md-contacts" />
                 </Text>
-                <Text style={styles.infoContent}>{info1}</Text>
+                <Text style={styles.infoContent}>ABC Rowing Club</Text>
             </View>
             <View style={styles.info}>
                 <Text style={styles.iconProfile}>
-                    <Icon name="tool"/>
+                    <Ionicons name="md-build"/>
                 </Text>
-                <Text style={styles.infoContent}>{info2}</Text>
+                <Text style={styles.infoContent}>Single Scull</Text>
             </View>
             <View style={styles.info}>
                 <Text style={styles.iconProfile}>
-                    <Icon name="timer" />
+                    <Ionicons name="md-timer" />
                 </Text>
-                <Text style={styles.infoContent}>{info3}</Text>
+                <Text style={styles.infoContent}>6:21:59</Text>
             </View>
         </View>
     );

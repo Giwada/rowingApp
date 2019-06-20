@@ -4,7 +4,8 @@ import { Text } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import styles from './assets/style';
-import Icon from './assets/Icons';
+import { Ionicons } from '@expo/vector-icons';
+
 
 // import containers(screens)
 import DashboardScreen from './containers/Dashboard';
@@ -23,7 +24,7 @@ const App = createBottomTabNavigator(
                     const iconFocused = focused ? "#d8d8d8" : "#D0021B"
                     return (
                         <Text style={[styles.iconMenu, { color: iconFocused }]}>
-                            <Icon name="dashboard" />
+                            <Ionicons name="md-home" />
                         </Text>
                     );
                 }
@@ -36,7 +37,7 @@ const App = createBottomTabNavigator(
                     const iconFocused = focused ? "#d8d8d8" : "#D0021B"
                     return (
                         <Text style={[styles.iconMenu, { color: iconFocused }]}>
-                            <Icon name="boat" />
+                            <Ionicons name="md-boat" />
                         </Text>
                     );
                 }
@@ -49,7 +50,7 @@ const App = createBottomTabNavigator(
                     const iconFocused = focused ? "#d8d8d8" : "#D0021B"
                     return (
                         <Text style={[styles.iconMenu, { color: iconFocused }]}>
-                            <Icon name="user" />
+                            <Ionicons name="md-person" />
                         </Text>
                     );
                 }
@@ -62,7 +63,7 @@ const App = createBottomTabNavigator(
         //            const iconFocused = focused ? "#d8d8d8" : "#D0021B"
         //            return (
         //                <Text style={[styles.iconMenu, { color: iconFocused }]}>
-        //                    <Icon name="more" />
+        //                    <Ionicons name="md-reorder" />
         //                </Text>
         //            );
         //        }
@@ -72,7 +73,7 @@ const App = createBottomTabNavigator(
     {
         tabBarOptions:{
             activeTintColor: "#d0021b",
-            inactiveTintColor: "d8d8d8",
+            inactiveTintColor: "#d8d8d8",
             labelStyle: {
                 fontSize: 12,
                 textTransform: "none",

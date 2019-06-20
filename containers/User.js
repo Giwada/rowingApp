@@ -9,8 +9,11 @@ import {
 
 // components
 import UserItem from '../components/UserItem';
+// styles
+import styles from "../assets/style";
+
 // icons
-import Icon from './assets/Icons';
+import { Ionicons } from '@expo/vector-icons';
 // dummy data
 import Data from "../assets/data";
 
@@ -22,21 +25,21 @@ const User = () => {
         info1,
         info2,
         info3,
-    } = Data[6];
+    } = [Data[1]];
 
     return (
         <ImageBackground
-            source={require("../assets/images/background.png")}
+            source={require("../assets/images/bg.png")}
             style={styles.background}
         >
             <ScrollView style={styles.containerUser}>
                 <View style={styles.top}>
-                        <Text style={styles.title}>User Profile</Text>
-                        <TouchableOpacity>
-                            <Text style={styles.icon}><Icon name="#" /></Text>
-                        </TouchableOpacity>
-                    </View>
-                <ImageBackground source={image} style={styles.photo} />
+                    <Text style={styles.title}>User Profile</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.icon}><Ionicons name="md-notifications-outline" size={32} /></Text>
+                    </TouchableOpacity>
+                </View>
+                <ImageBackground source={require("../assets/images/user1.jpg")} style={styles.photo} />
                 <UserItem
                     name={name}
                     bio={bio}
@@ -47,7 +50,7 @@ const User = () => {
                 <View style={styles.actionsProfile}>
                     <TouchableOpacity style={styles.roundedButton}>
                         <Text style={styles.iconButton}>
-                            <Icon name="edit"/>
+                            <Ionicons name="md-create"/>
                         </Text>
                         <Text style={styles.textButton}>Edit</Text>
                     </TouchableOpacity>

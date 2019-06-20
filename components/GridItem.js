@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../assets/styles';
+import styles from "../assets/style";
 import { 
     Text, 
     View, 
@@ -8,13 +8,9 @@ import {
     //TouchableOpacity
  } from 'react-native';
 
-//import Icon from '../assets/Icons';
-
 const GridItem = ({
-    image,
     name,
-    //bio,
-    //status,
+    image,
 }) => {
     const fullWidth = Dimensions.get("window").width;
     const imageStyle = [
@@ -33,10 +29,13 @@ const GridItem = ({
             fontSize: variant ? 15 : 30
         }
     ];
-    
+
     return (
         <View style={styles.containerGridItem}>
-            <Image source={image} style={imageStyle} />
+            <Image 
+                source={image} 
+                style={imageStyle} 
+            />
             <Text style={nameStyle}>{name}</Text>
         </View>
     );

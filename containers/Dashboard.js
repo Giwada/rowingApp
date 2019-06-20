@@ -1,87 +1,125 @@
 import React from 'react';
 import {
+    Text,
     View,
-    ImageBackground
+    Image,
+    ImageBackground,
+    Dimensions,
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
+
+//import List from '../components/List';
 
 // import React Native Chart Kit
 import {
-    //LineChart,
-    //BarChart,
     PieChart,
-    //ProgressChart,
-    //ContributionGraph,
-    //StackedBarChart
-  } from 'react-native-chart-kit'
+} from 'react-native-chart-kit'
 
 // styles
-import styles from '../assets/styles';
-
+import styles from '../assets/style';
+import { Ionicons } from '@expo/vector-icons';
 // dummy data
-//import Data from '../assets/data.js'
+import Data from '../assets/data.js'
+import rateData from '../assets/ratedata.js';
 
 const Dashboard = () => {
-    const rateData = [
-        { name: '- SR 18', ratio: 40, color: 'rgba(255, 0, 0, 0.8)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-        { name: 'SR 18 - 24', ratio: 10, color: 'rgba(255, 0, 0, 0.6)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-        { name: 'SR 24 - 30', ratio: 22, color: 'rgba(255, 0, 0, 0.4)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-        { name: 'SR 30 -', ratio: 28, color: 'rgba(255, 0, 0, 0.2)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    ]
+    
+    const screenWidth = Dimensions.get("window").width;
 
     return (
         <ImageBackground
-            source={require("../assets/images/background")}
+            source={require("../assets/images/bg.png")}
             style={styles.background}
         >
-            <View >
-                <Image 
-                    source={require("../assets/images/user")} 
-                    style={styles.imageDashboard}
-                    />
-                <Text style={styles.toptextDashboard}>Hello, Sir.</Text>
-                <Text>Have a good day.</Text>
-            </View>
             <View style={styles.containerDashboard}>
-                {/* Overview */}
-                <View style={styles.top}>
-                    <View>
+                <View style={styles.toptextDashboard}>
+                    <Image 
+                        style={styles.imageDashboard}
+                    />
+                    <Text style={styles.title}>Hello Sir</Text>
+                    <Text style={styles.title}>How are you?</Text>
+                </View>
+                <View style={styles.overviewContainer}>
+                    <View style={{borderRightWidth: 0.5, margin: 3 }}>
                         <View>
-                            <Text>Training Time</Text>
-                            <Text>1:00:05</Text>
+                            <Text style={styles.textSmall}>Training Time</Text>
+                            <Text style={styles.textMedium}>1:23:45</Text>
                         </View>
                     </View>
                     <View>
                         <View>
-                            <Text>Average Rate</Text>
-                            <Text>28<Text>SR/m</Text></Text>
+                            <Text style={styles.textSmall}>Stroke Rate</Text>
+                            <Text style={styles.textMedium}>28.45 s/m</Text>
                         </View>
-                        <View /> {/* border */}
+                        <View /> 
                     </View>
-                    <View>
+                    <View style={{borderLeftWidth: 0.5, margin: 3 }}>
                         <View>
-                            <Text>Average Speed</Text>
-                            <Text>12.34<Text>km/h</Text></Text>
+                            <Text style={styles.textSmall}>Avg. Speed</Text>
+                            <Text style={styles.textMedium}>18.39 km/h</Text>
                         </View>
-                        <View /> {/* border */}
+                        <View /> 
                     </View>
                 </View>
-                {/* Graphical View - The ratio of user's stroke rate(SR) */}
-                <View style={styles.graph}>
-                    <Text>Latest Training</Text>
+
+                <View style={styles.graphContainer}>
+                    <Text style={styles.textMedium}>LATEST TRAINING</Text>
                     <PieChart 
                         data={rateData}
                         width={screenWidth}
                         height={220}
-                        chartConfig={chartConfig}
+                        chartConfig={{
+                            backgroundColor: '#e26a00',
+                            backgroundGradientFrom: '#fb8c00',
+                            backgroundGradientTo: '#ffa726',
+                            decimalPlaces: 2, 
+                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            style: {
+                              borderRadius: 16
+                            }
+                          }}                      
                         accessor="ratio"
                         backgroundColor="transparent"
-                        paddingLeft="15"
+                        paddingLeft="5"
                         absolute
                     />
                 </View>
-                <View style={styles.list}>
-                    <List />
-                </View>
+                <FlatList 
+                    numColumns={2}
+                    data={Data}
+                    style={styles.listContainer}
+                    keyExtractor={(index) => index.toString()}
+                    renderItem={({item}) =>(
+                        <TouchableOpacity>
+                           <Text style={styles.textMedium}>NEXT TRAINING</Text>
+                           <View style={styles.info}>
+                              <Text style={styles.iconList}>
+                                  <Ionicons name="md-clipboard" />
+                              </Text>
+                              <Text style={styles.infoContent}>
+                                {item.trainingTitle}
+                              </Text>
+                          </View>
+                           <View style={styles.info}>
+                              <Text style={styles.iconList}>
+                                  <Ionicons name="md-time" />
+                              </Text>
+                              <Text style={styles.infoContent}>
+                                {item.date}
+                              </Text>
+                          </View>
+                           <View style={styles.info}>
+                              <Text style={styles.iconList}>
+                                  <Ionicons name="md-locate" />
+                              </Text>
+                              <Text style={styles.infoContent}>
+                                {item.location}
+                              </Text>
+                          </View>
+                        </TouchableOpacity>
+                    ) }
+                />
             </View>
         </ImageBackground>
     );
